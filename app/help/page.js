@@ -1,13 +1,9 @@
 import React from 'react'
-import Main from './components/Main'
 
 const page = () => {
   return (
-    <div>
-      <div >
-        <Main />
-      </div>
-
+    <div className='text-white'>
+      help me
     </div>
   )
 }
