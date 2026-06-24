@@ -10,7 +10,7 @@ const Main = () => {
             <div className='h-[99vh] flex flex-col justify-center gap-3 flex'>
                 <div className='text-5xl font-bold'>GET ME A <span className='text-yellow-400 font-serif'>CHAI</span></div>
                 <div className=''>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, quo. Libero perferendis distinctio eveniet error.</p>
+                    <p>A creator support platform where fans can discover creators, leave messages, and contribute directly through secure payments.</p>
                 </div>
                 <div className='flex justify-center gap-5'>
                     {
@@ -41,11 +41,11 @@ const Main = () => {
             <div className='h-0.5 w-[90%] bg-white/30 m-auto my-3'></div>
             <div className='flex m-auto justify-around w-[70vw] py-8'>
                 <div className='bg-white/50'>
-                    <img className='rounded rotate-5 hover:sepia-50 p-1' width={200} height={150} src="https://media.newyorker.com/photos/59095bb86552fa0be682d9d0/master/w_1920,c_limit/Monkey-Selfie.jpg" alt="img" />
+                    <img className='rounded rotate-5 hover:sepia-50 p-1' width={200} height={150} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSC5AJsWx5euVlk7c2ANrWXbJ1JZLX-ff-bWGKocNr5fswGcnJCDHk9PY&s=10" alt="img" />
                 </div>
                 <div className='w-[40%] flex flex-col gap-[25%]'>
                     <h1 className='text-3xl font-extrabold'>About</h1>
-                    <p>Hi! I'm Monkey, a playful and curious jungle explorer. I love swinging through trees, eating bananas, and going on exciting adventures with my friends. I'm always ready to learn new things and have fun. Welcome to my world—let's explore, play, and discover amazing things together!</p>
+                    <p>Hi! I'm the creator of Get Me A Chai, a platform built to help creators receive support directly from their audience. Whether you're a developer, designer, writer, or content creator, this platform makes it easy for supporters to contribute, leave encouraging messages, and help fuel your next project. Every cup of chai is a small gesture of appreciation that keeps creativity going.</p>
                 </div>
             </div>
         </div>

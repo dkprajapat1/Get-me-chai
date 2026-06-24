@@ -16,7 +16,6 @@ export default function Page({ params }) {
 
     const getdata = async () => {
         let d = await fetchuser(username)
-        // console.log("fetched user at username page:", d);
         setuser_data(d);
     }
     return <div>

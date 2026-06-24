@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import { useRouter } from "next/navigation"
 import { useSession, signIn, signOut } from "next-auth/react"
 import Userpage from '../components/Userpage'
+import { ToastContainer, toast } from 'react-toastify';
+import { Bounce } from 'react-toastify'
 import { fetchpayments, fetchuser, updateProfile } from "../actions/useraction";
 
 const page = () => {
@@ -59,15 +61,31 @@ const page = () => {
     const update_data = async () => {
         try {
             let a = await updateProfile(user_info, session?.user?.name)
+            notify()
         } catch (err) {
             console.error("CLIENT ERROR", err)
         }
     }
 
+    const notify = () => toast("Profile Updated!");
+
 
     return (
         <div>
             <>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick={false}
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                    transition={Bounce}
+                />
                 <div className="min-h-screen text-white [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#6633EE_100%)]">
                     <div>
                         <img
@@ -115,14 +133,20 @@ const page = () => {
                         </div>
 
                         {/* input and pay button box */}
-                        <div className="flex flex-col gap-3 w-[50%]">
+                        <div className="flex gap-1 flex-col w-[50%] bg-white/30 px-5 rounded py-4">
+                            <label htmlFor='name' className='relative text-black bg-white/30 rounded px-3'>Name</label>
                             <input onChange={handlechange} name="name" value={user_info.name} className="bg-white/70 text-black px-3 py-2 rounded" type="text" placeholder="Name" />
-                            <input onChange={handlechange} name="razorpayid" value={user_info.razorpayid} className="bg-white/70 text-black px-3 py-2 rounded" type="text" placeholder="Razorpay Id" />
-                            <input onChange={handlechange} name="razorpaysecret" value={user_info.razorpaysecret} className="bg-white/70 text-black px-3 py-2 rounded" type="text" placeholder="Razorpay secret" />
+                            <label htmlFor='razorpayid' className='relative text-black bg-white/30 rounded px-3'>Razorpay Id</label>
+                            <input onChange={handlechange} name="razorpayid" value={user_info.razorpayid} className="bg-white/70 text-black px-3 py-2 rounded" type="password" placeholder="Razorpay Id" />
+                            <label htmlFor='razorpaysecret' className='relative text-black bg-white/30 rounded px-3'>Razorpay Secret</label>
+                            <input onChange={handlechange} name="razorpaysecret" value={user_info.razorpaysecret} className="bg-white/70 text-black px-3 py-2 rounded" type="password" placeholder="Razorpay secret" />
 
+                            <label htmlFor='profilepic' className='relative text-black bg-white/30 rounded px-3'>Profile Picture URL</label>
                             <input onChange={handlechange} name="profilepic" value={user_info.profilepic} className="bg-white/70 text-black px-3 py-2 rounded" type="text" placeholder="profilepic URL" />
 
+                            <label htmlFor='coverpic' className='relative text-black bg-white/30 rounded px-3'>Cover Picture URL</label>
                             <input onChange={handlechange} name="coverpic" value={user_info.coverpic} className="bg-white/70 text-black px-3 py-2 rounded" type="text" placeholder="coverpic URL" />
+                             <div className='relative text-black bg-white/30 rounded px-3'>Email</div>
                             <div className="bg-white/70 text-black px-3 py-2 rounded cursor-not-allowed">{user_info.email}</div>
 
                             <button onClick={() => update_data()} type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5 rounded" >Save</button>
