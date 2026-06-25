@@ -104,7 +104,7 @@ const page = () => {
                             <div className="mt-4 text-5xl md:text-7xl font-bold text-center font-serif">
                                 Hello{" "}
                                 <span className="text-blue-400">
-                                    {session?.user?.name}
+                                    {user_data.name || session?.user?.name}
                                 </span>
                             </div>
                         </div>

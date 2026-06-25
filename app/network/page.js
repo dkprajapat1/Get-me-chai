@@ -66,7 +66,7 @@ const page = () => {
                                     </div>
                                 </div>
 
-                                <button onClick={()=>open_profile(user._id)} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">
+                                <button onClick={()=>open_profile(user._id)} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm cursor-pointer">
                                     Visit
                                 </button>
 
