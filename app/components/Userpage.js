@@ -6,10 +6,12 @@ import { useSession } from "next-auth/react";
 import { fetchpayments, initiate } from "../actions/useraction";
 import { useRouter } from "next/navigation"
 import { ToastContainer, toast } from 'react-toastify';
+import Loading from "./Loading";
 
 
 const Userpage = ({ params }) => {
     const { data: session } = useSession();
+    const [loading, setloading] = useState(true);
     const router = useRouter();
     const [paymentform, setPaymentform] = React.useState({ name: "", message: "", amount: "" })
     const [done_payments, setDone_payments] = useState()
@@ -54,6 +56,7 @@ const Userpage = ({ params }) => {
 
     useEffect(() => {
         getdata()
+        
     }, [params?.username])
 
     const getdata = async () => {
@@ -62,6 +65,12 @@ const Userpage = ({ params }) => {
         // Calculate total amount
         const totalAmount = u.reduce((sum, payment) => sum + payment.amount, 0)
         setTotal(totalAmount)
+        setTimeout(() => {
+        setloading(false);
+    }, 100);
+    }
+if (loading) {
+        return <Loading />;
     }
     return (
         <>
