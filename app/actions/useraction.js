@@ -34,7 +34,6 @@ export const initiate = async (amount, to_username, paymentform) => {
 
 }
 
-
 export const fetchuser = async (username) => {
     await connectDb()
     let u = await User.findOne({ username: username })
@@ -44,9 +43,13 @@ export const fetchuser = async (username) => {
     let k = u.toObject({ flattenObjectIds: true })
     return k
 }
+
+
+
+// for the network page to fetch all users and display them in the network page, we need to create a function that fetches all users from the database. This function will be called from the network page to get the list of users and display them.
 export const fetchuserall = async () => {
     await connectDb()
-    let x = await User.find().lean()
+    let x = await User.find({ active_status: true }).lean()
     if (!x) {
         return null
     }
@@ -71,6 +74,7 @@ export const fetchpayments = async (username) => {
 
 export const updateProfile = async (data, oldusername) => {
     await connectDb()
+    // console.log("data in update profile is :", data)
     let ndata = data
     let result = await User.updateOne(
         { email: ndata.email },
@@ -89,5 +93,17 @@ export const updateProfile = async (data, oldusername) => {
 
     }
     await User.updateOne({ email: ndata.email }, ndata)
+}
+
+export const updatestatus = async (username, status1) => {
+    await connectDb()
+    console.log("updatestatus called with username:", username, "and status:", status1)
+    let u = await User.findOne({ username: username })
+    if (!u) {
+        return { error: "Username not found" }
+    }
+    const result = await User.updateOne({ username }, { $set: { active_status: status1 } })
+
+    console.log(result);
 }
 

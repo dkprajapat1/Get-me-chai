@@ -11,6 +11,7 @@ const UserSchema = new Schema({
     razorpaysecret: { type: String },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
+    active_status: { type: Boolean}
     });
 
  

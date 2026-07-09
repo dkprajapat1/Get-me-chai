@@ -29,7 +29,8 @@ export const authoptions = NextAuth({
             razorpaysecret: "",
             razorpayid: "",
             profilepic:user.image,
-            coverpic: ""
+            coverpic: "",
+            active_status: false
           })
         }
         return true

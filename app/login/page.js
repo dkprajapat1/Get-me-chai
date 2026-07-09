@@ -10,10 +10,13 @@ import Loading from "../components/Loading"
 export default function Component() {
   const [loading, setloading] = useState(true);
   const { data: session, status } = useSession()
+  
   setTimeout(() => {
     setloading(false);
   }, [500])
+
   const router = useRouter();
+
   useEffect(() => {
     if (session) {
       router.push("/profile")

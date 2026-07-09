@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffectEvent, useState } from 'react'
 import { useEffect } from 'react'
 import { useRouter } from "next/navigation"
 import { useSession, signIn, signOut } from "next-auth/react"
@@ -7,7 +7,7 @@ import Userpage from '../components/Userpage'
 import Loading from '../components/Loading'
 import { ToastContainer, toast } from 'react-toastify';
 import { Bounce } from 'react-toastify'
-import { fetchpayments, fetchuser, updateProfile } from "../actions/useraction";
+import { fetchpayments, fetchuser, updateProfile, updatestatus } from "../actions/useraction";
 
 const page = () => {
     const { data: session, status } = useSession()
@@ -29,9 +29,9 @@ const page = () => {
         razorpaysecret: "",
         profilepic: "",
         coverpic: "",
-        email: session?.user?.email
-
+        email: session?.user?.email,
     });
+    const [active_status, setstatus] = useState()
 
     useEffect(() => {
         setTimeout(() => {
@@ -54,6 +54,7 @@ const page = () => {
         let d = await fetchuser(session?.user?.name)
         setuser_data(d)
         setuser_info(d)
+        setstatus(d.active_status)
         setTimeout(() => {
             setLoading(false);
         }, 500);
@@ -71,8 +72,21 @@ const page = () => {
             console.error("CLIENT ERROR", err)
         }
     }
+    
+    const set_status = async () => {
+        
+        try {
+            let a = await updatestatus(session?.user?.name, !active_status)
+            setstatus(!active_status)
+            notify_status()
+        } catch (err) {
+            console.error("CLIENT ERROR", err)
+        }
+    }
+
 
     const notify = () => toast("Profile Updated!");
+    const notify_status = () => toast("Profile Status Updated!");
 
     if (status === "loading" || loading) {
         return <Loading />
@@ -114,6 +128,24 @@ const page = () => {
                                         {user_data.name || session?.user?.name}
                                     </span>
                                 </div>
+
+                                {
+                                    active_status ? (
+                                        <div
+                                            className="text-lg font-semibold my-1 text-green-500 border border-green-500 rounded-2xl px-2 cursor-pointer hover:bg-white/20"
+                                            onClick={set_status}
+                                        >
+                                            Active Public Profile
+                                        </div>
+                                    ) : (
+                                        <div
+                                            className="text-lg font-semibold my-1 text-red-500 border border-red-500 rounded-2xl px-2 cursor-pointer hover:bg-white/20"
+                                            onClick={set_status}
+                                        >
+                                            Deactivate Public Profile
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
 
