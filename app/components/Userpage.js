@@ -88,43 +88,43 @@ if (loading) {
             />
 
             <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-            <div className="text-white [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] -mb-6">
+            <div className="text-white [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] flex-1 min-h-full">
                 <div>
                     {/* banner */}
                     <img
-                        className="w-full h-70 object-cover object-center"
+                        className="w-full h-40 sm:h-56 md:h-70 object-cover object-center"
                         src={params.coverpic || "/banner.png"}
                         alt="banner"
                     />
 
-                    <div className="flex flex-col items-center -mt-10">
+                    <div className="flex flex-col items-center -mt-10 px-4">
                         <img
-                            className="h-[150px] w-[150px] rounded-full border-4 border-white"
+                            className="h-[90px] w-[90px] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px] rounded-full border-4 border-white object-cover"
                             src={params.profilepic || session?.user?.image}
                             alt="profile"
                         />
 
-                        <div className="mt-4 text-5xl md:text-7xl font-bold text-center font-serif">
+                        <div className="mt-4 text-3xl sm:text-5xl md:text-7xl font-bold text-center font-serif break-words">
                             Hy i'm{" "}
                             <span className="text-blue-400">
                                 {params.name || params.username}
                             </span>
                         </div>
-                        <div>Total Community Support: <span className="text-green-500 font-bold">₹{total}</span></div>
+                        <div className="text-sm sm:text-base text-center">Total Community Support: <span className="text-green-500 font-bold">₹{total}</span></div>
                     </div>
                 </div>
 
 
                 {/* message box for all done payment */}
-                <div className="flex flex-col md:flex-row w-[85%] justify-around  rounded-lg p-6 m-auto mt-20 h-[45vh]">
-                    <div className="flex flex-col gap-1 mb-6 md:mb-0 border border-amber-100/30 rounded-2xl w-[40%] p-5">
-                        <h2 className="text-2xl font-bold my-1 self-center">Messages</h2>
-                        <ul className="space-y-3 overflow-auto">
+                <div className="flex flex-col md:flex-row w-[92%] md:w-[85%] justify-around gap-6 md:gap-4 rounded-lg p-2 sm:p-6 m-auto mt-10 md:mt-20 md:h-[45vh]">
+                    <div className="flex flex-col gap-1 mb-6 md:mb-0 border border-amber-100/30 rounded-2xl w-full md:w-[40%] p-4 sm:p-5">
+                        <h2 className="text-xl sm:text-2xl font-bold my-1 self-center">Messages</h2>
+                        <ul className="space-y-3 overflow-auto max-h-[300px] md:max-h-none">
                             {
                                 done_payments && done_payments.map((user) => {
-                                    return <li key={user._id} className="flex items-center gap-2">
-                                        <img className="p-1 rounded-full border-2" width={25} src="fix_profile.gif" alt="profile" />
-                                        <p>
+                                    return <li key={user._id} className="flex items-start sm:items-center gap-2">
+                                        <img className="p-1 rounded-full border-2 shrink-0" width={25} src="fix_profile.gif" alt="profile" />
+                                        <p className="text-sm sm:text-base break-words">
                                             {user.name.toUpperCase()} give you
                                             <span className="font-bold"> ₹{user.amount}</span>
                                             <span className="text-green-500"> "{user.message}" </span>
@@ -137,11 +137,11 @@ if (loading) {
                     </div>
 
                     {/* input and pay button box */}
-                    <div className="flex flex-col gap-3 w-[50%]">
-                        <input onChange={handlechange} name="name" value={paymentform.name} className="bg-white/70 text-black px-3 py-2 rounded" type="text" placeholder="Name" />
-                        <input onChange={handlechange} name="message" value={paymentform.message} className="bg-white/70 text-black px-3 py-2 rounded" type="text" placeholder="Message" />
-                        <input onChange={handlechange} name="amount" value={paymentform.amount} className="bg-white/70 text-black px-3 py-2 rounded" type="number" placeholder="Pay" />
-                        <div className="flex gap-3">
+                    <div className="flex flex-col gap-3 w-full md:w-[50%]">
+                        <input onChange={handlechange} name="name" value={paymentform.name} className="bg-white/70 text-black px-3 py-2 rounded w-full" type="text" placeholder="Name" />
+                        <input onChange={handlechange} name="message" value={paymentform.message} className="bg-white/70 text-black px-3 py-2 rounded w-full" type="text" placeholder="Message" />
+                        <input onChange={handlechange} name="amount" value={paymentform.amount} className="bg-white/70 text-black px-3 py-2 rounded w-full" type="number" placeholder="Pay" />
+                        <div className="flex flex-wrap gap-3">
                             <div onClick={() => pay(1000)} className="px-2 py-1 border rounded w-fit hover:bg-white/30 hover:cursor-pointer">Pay ₹10</div>
                             <div onClick={() => pay(2000)} className="px-2 py-1 border rounded w-fit hover:bg-white/30 hover:cursor-pointer">Pay ₹20</div>
                             <div onClick={() => pay(5000)} className="px-2 py-1 border rounded w-fit hover:bg-white/30 hover:cursor-pointer">Pay ₹50</div>
