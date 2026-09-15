@@ -36,7 +36,7 @@ const Navbar = () => {
                             <div className='flex items-center gap-3'>
                                 <div className='flex items-center gap-2'>
                                     <Link href={"/profile"}>
-                                        <img src={session.user.image} alt="" className="w-8 h-8 rounded-full object-cover" />
+                                        <img src={session?.user?.image} alt="" className="w-8 h-8 rounded-full object-cover" />
                                     </Link>
                                     <div className="whitespace-nowrap">{session.user.name}</div>
                                 </div>
