@@ -29,8 +29,9 @@ export default function Component() {
     return (
       <div className="flex flex-col gap-2 min-h-scree p-10 items-center min-h-[93vh] justify-center">
 
-        {/* <button
-          className="flex w-64 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ">
+        <button
+          className="flex w-64 items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 "
+          onClick={() => signIn('google')}>
           <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
             viewBox="-0.5 0 48 48" version="1.1">
 
@@ -54,7 +55,7 @@ export default function Component() {
             </g>
           </svg>
           <span>Continue with Google</span>
-        </button> */}
+        </button>
 
 
         {/* <button

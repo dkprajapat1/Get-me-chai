@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import mongoose from "mongoose";
 import connectDb from "../../../db/connectDb";
 import Payment from "../../../models/payment";
@@ -13,10 +14,14 @@ export const authoptions = NextAuth({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
+     GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET
+    }),
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      if (account.provider == "github") {
+      if (account.provider == "github" || account.provider == "google") {
         await connectDb()
         // Check if the user already exists in the database
         const currentUser = await User.findOne({ email: user.email })
