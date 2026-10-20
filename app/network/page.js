@@ -58,7 +58,7 @@ const page = () => {
     }
 
     const handel = (e) => {
-        setsearch(e.target.value);
+        setsearch((e.target.value).toLowerCase());
     }
 
     if (loading) {
