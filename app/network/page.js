@@ -9,13 +9,7 @@ import Link from 'next/link'
 const page = () => {
     const router = useRouter()
     const [loading, setloading] = useState(true);
-    const [users, setuser] = useState([{
-        name: "",
-        username: "",
-        profilepic: "",
-        coverpic: "",
-        _id: ""
-    }]);
+    const [users, setuser] = useState([]);
     const [filtered_user, setfiltered_user] = useState([{
         name: "",
         username: "",
@@ -29,14 +23,11 @@ const page = () => {
 
     const getall_user = async () => {
         const u = await fetchuserall()
-        setuser(u);
-        // console.log("all user data is :", u)
+        await setuser(u);
     }
     useEffect(() => {
         getall_user();
-        setTimeout(() => {
-            setloading(false);
-        }, 200);
+        setloading(false);
     }, [])
 
     useEffect(() => {
