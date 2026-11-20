@@ -52,7 +52,7 @@ const page = () => {
         setsearch((e.target.value).toLowerCase());
     }
 
-    if (loading) {
+    if (loading || users.length < 1) {
         return <Loading />;
     }
     else
