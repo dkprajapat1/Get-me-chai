@@ -5,7 +5,7 @@ import Payment from "../models/payment"
 import connectDb from "../db/connectDb"
 import User from "../models/user"
 
-export const initiate = async (amount, to_username, paymentform) => {
+export const initiate = async (amount, to_username, paymentform , sender) => {
     await connectDb()
 
 
@@ -28,7 +28,14 @@ export const initiate = async (amount, to_username, paymentform) => {
     // 
 
     // create a payment object which shows a pending payment in the database
-    await Payment.create({ oid: x.id, amount: amount / 100, to_user: to_username, name: paymentform.name, message: paymentform.message })
+    await Payment.create({ 
+        oid: x.id, 
+        amount: amount / 100, 
+        to_user: to_username, 
+        name: paymentform.name, 
+        message: paymentform.message,
+        sender_id:sender,
+     })
 
     return x
 

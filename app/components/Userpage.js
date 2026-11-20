@@ -16,12 +16,13 @@ const Userpage = ({ params }) => {
     const [paymentform, setPaymentform] = React.useState({ name: "", message: "", amount: "" })
     const [done_payments, setDone_payments] = useState()
     const [total, setTotal] = useState(0)
+
     const pay = async (amount) => {
         // Get the order Id 
         if (!session) {
             toast("please login to Pay");
         } else {
-            let a = await initiate(amount, params.username, paymentform)
+            let a = await initiate(amount, params.username, paymentform , session?.user?.email)
 
             let orderId = a.id
             var options = {

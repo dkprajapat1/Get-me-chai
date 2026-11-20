@@ -1,3 +1,4 @@
+'use server'
 import mongoose from "mongoose";
 
 const connectDb = async () => {
@@ -9,7 +10,7 @@ const connectDb = async () => {
 
     } catch (error) {
         console.error(error);
-        process.exit(1);
+        // process.exit(1);
     }
 }
 
